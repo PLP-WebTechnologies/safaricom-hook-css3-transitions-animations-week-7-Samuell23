@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web Page</title>
+    <style>
+        body {
+            background-color: #302B63; /* Deep Purple background */
+            color: #E0C0FF; /* Light Lavender text color */
+        }
+
+        h1 {
+            color: #E0C0FF; /* Light Lavender heading */
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #6A00FF; /* Deep Purple button */
+            color: #E0C0FF; /* Light Lavender button text */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4B0082; /* Darker Purple on hover */
+            transform: scale(1.1);
+        }
+
+        .card {
+            width: 200px;
+            height: 200px;
+            background-color: #9400D3; /* Deep Lavender card */
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Glowing gold shadow */
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .rotate {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #6A00FF; /* Deep Purple box */
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+
+        .animate {
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Code for highlighting test results (optional) */
+        .test-result {
+            color: #FFD700; /* Glowing Gold test result color */
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Web Page</h1>
+
+    <button class="btn">Hover Me</button>
+    <div class="card"></div>
+
+    <div class="fade-in">This text fades in!</div>
+    <div class="rotate">??</div>
+
+    <script>
+        // Function with parameters and return values
+        function calculateArea(width, height) {
+            return width * height;
+        }
+
+        const area = calculateArea(10, 5);
+        console.log(`Area: <span class="test-result">${area}</span>`); 
+
+        // Function demonstrating scope
+        let globalVar = "I'm global!";
+
+        function checkScope() {
+            let localVar = "I'm local!";
+            console.log(globalVar); 
+            console.log(localVar); 
+        }
+
+        checkScope();
+        console.log(globalVar); 
+        // console.log(localVar); 
+
+        // Function to toggle a CSS class
+        function toggleModal() {
+            const modal = document.getElementById("modal");
+            modal.classList.toggle("hidden");
+            modal.classList.toggle("fade-out");
+        }
+    </script>
+
+    <div id="modal">This is a modal!</div>
+    <button onclick="toggleModal()">Toggle Modal</button>
+
+    <div class="box" id="box"></div>
+    <button onclick="bounceBox()">Bounce the Box</button>
+
+    <script>
+        function bounceBox() {
+            const box = document.getElementById("box");
+            box.classList.add("animate");
+
+            box.addEventListener("animationend", () => {
+                box.classList.remove("animate");
+            }, { once: true });
+        }
+    </script>
+</body>
+</html>
